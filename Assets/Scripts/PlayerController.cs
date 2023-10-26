@@ -44,15 +44,16 @@ public class NewBehaviourScript : MonoBehaviour
         {
             if (facingRight == true)
             {
-                transform.rotation += 
+                //make player rotate when key pressed
+                //use bools to switch facingRight on and off
             }
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.position += Vector3.right * speed * Time.deltaTime;
         }
 
         //going right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
         //jumping
