@@ -23,6 +23,8 @@ public class NewBehaviourScript : MonoBehaviour
     private Vector3 startPos;
     private bool stunned = false;
 
+    public bool facingRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,10 @@ public class NewBehaviourScript : MonoBehaviour
         //going left
         if (Input.GetKey(KeyCode.A))
         {
+            if (facingRight == true)
+            {
+                transform.rotation += 
+            }
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
@@ -115,13 +121,13 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            lives--;
+            lives -= 15;
             Respawn();
         }
 
         if (other.gameObject.tag == "Heavy enemy")
         {
-
+            lives -= 30;
             Respawn();
         }
 
