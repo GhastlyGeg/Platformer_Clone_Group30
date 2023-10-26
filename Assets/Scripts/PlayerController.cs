@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //Harms, Greg
-//10/23/2023
-//Handles movement and collision for the player
+//10/26/2023
+//Handles all player movement and collision detection for player object
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float deathYLevel = -3f;
 
-    public float jumpForce = 10f;
+    public float jumpForce = 20f;
 
     public float lives;
 
@@ -30,7 +30,7 @@ public class NewBehaviourScript : MonoBehaviour
         rigidBodyRef = GetComponent<Rigidbody>();
 
         //set the starting position
-        lives = 3;
+        lives = 99;
         startPos = transform.position;
     }
 
@@ -38,19 +38,19 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
         //going left
-        if (Input.GetKey(KeyCode.A) && stunned == false)
+        if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
         //going right
-        if (Input.GetKey(KeyCode.D) && stunned == false)
+        if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
 
         //jumping
-        if(Input.GetKeyDown(KeyCode.Space) && stunned == false)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             HandleJump();
         }
@@ -67,7 +67,6 @@ public class NewBehaviourScript : MonoBehaviour
     {
         //teleport the player to the starting position
         //cause the player to lose a life
-        lives--;
         transform.position = startPos;
 
         if (lives == 0)
@@ -114,45 +113,21 @@ public class NewBehaviourScript : MonoBehaviour
     /// <param name="other">The object being collided with</param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Coin")
-        {
-            totalCoins++;
-            other.gameObject.SetActive(false);
-        }
-
         if (other.gameObject.tag == "Enemy")
         {
+            lives--;
             Respawn();
         }
 
-        if (other.gameObject.tag == "Portal")
+        if (other.gameObject.tag == "Heavy enemy")
         {
-            Debug.Log("Interacted with portal");
-            //move the player to the teleport point's position stored on the Portal object
-            transform.position = other.gameObject.GetComponent<Portal>().teleportPoint.transform.position;
-            startPos = transform.position;
-        }
 
-        if (other.gameObject.tag == "Laser")
-        {
-            StartCoroutine(StunPlayer());
-        }
-
-        if (other.gameObject.tag == "Tar")
-        {
             Respawn();
         }
 
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Heavy Bullet")
         {
-            Respawn();
+            Debug.Log("Player gets heavy bullet upgrade");
         }
-    }
-
-    IEnumerator StunPlayer()
-    {
-        stunned = true;
-        yield return new WaitForSeconds(2);
-        stunned = false;
     }
 }
