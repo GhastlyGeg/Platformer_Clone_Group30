@@ -1572,11 +1572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ab4cba2d923a94d9dee12716c13485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalCoins: 0
   speed: 10
   deathYLevel: -3
   jumpForce: 10
   lives: 99
+  bulletPrefab: {fileID: 3523519967891073158, guid: c8f73b14cd8db42418e81487cc5a12a9, type: 3}
+  shootRight: 0
   facingRight: 0
 --- !u!54 &1194962507
 Rigidbody:

@@ -8,9 +8,7 @@ using UnityEngine.SceneManagement;
 //Handles all player movement and collision detection for player object
 
 public class NewBehaviourScript : MonoBehaviour
-{
-    public int totalCoins = 0;
-    
+{   
     public float speed = 10f;
 
     public float deathYLevel = -3f;
@@ -20,8 +18,12 @@ public class NewBehaviourScript : MonoBehaviour
     public float lives;
 
     private Rigidbody rigidBodyRef;
+
     private Vector3 startPos;
-    private bool stunned = false;
+
+    public GameObject bulletPrefab;
+
+    public bool shootRight;
 
     public bool facingRight;
 
@@ -39,6 +41,15 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (facingRight)
+        {
+            shootRight = true;
+        }
+        else
+        {
+            shootRight = false;
+        }
+
         //going left
         if (Input.GetKey(KeyCode.A))
         {
@@ -71,6 +82,12 @@ public class NewBehaviourScript : MonoBehaviour
         if (transform.position.y <= deathYLevel)
         {
             Respawn();
+        }
+
+        if(Input.GetKey(KeyCode.E))
+        {
+            GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            bulletInstance.GetComponent<Bullet>().goingRight = shootRight;
         }
 
         CheckForDamage();
