@@ -93,13 +93,13 @@ public class NewBehaviourScript : MonoBehaviour
             Respawn();
         }
 
-        if(Input.GetKey(KeyCode.E) && heavyBullet == false && bullet == true)
+        if(Input.GetKeyDown(KeyCode.E) && heavyBullet == false && bullet == true)
         {
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bulletInstance.GetComponent<Bullet>().goingRight = shootRight;
         }
 
-        if (heavyBullet == true && bullet == false)
+        if (Input.GetKeyDown(KeyCode.E) && heavyBullet == true && bullet == false)
         {
             
             GameObject bulletinstance = Instantiate(heavyBulletPrefab, transform.position, transform.rotation);
