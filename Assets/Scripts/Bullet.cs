@@ -31,4 +31,12 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

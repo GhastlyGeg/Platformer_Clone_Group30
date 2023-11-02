@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Heavy Bullet Pickup
+  - Bullet
+  - Heavy Bullet
+  - Enemy
+  - LittleGuy
+  - BigGuy
   layers:
   - Default
   - TransparentFX

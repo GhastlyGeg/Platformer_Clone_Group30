@@ -115,7 +115,7 @@ public class NewBehaviourScript : MonoBehaviour
         //cause the player to lose a life
         transform.position = startPos;
 
-        if (lives == 0)
+        if (lives <= 0)
         {
             //add code to end the game, by loading the game over scene
             SceneManager.LoadScene(1);
@@ -130,11 +130,7 @@ public class NewBehaviourScript : MonoBehaviour
         //Raycast(startPos, direction, output hit, distance for ray
         if (Physics.Raycast(transform.position, Vector3.up, out hit, 1))
         {
-            //check to see if the object hitting the player is tagged thwomp
-            if (hit.collider.tag == "Thwomp")
-            {
-                Respawn();
-            }
+            //placeholder raycast in case of falling enemy addition
         }
     }
 
@@ -162,13 +158,11 @@ public class NewBehaviourScript : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             lives -= 15;
-            Respawn();
         }
 
         if (other.gameObject.tag == "Heavy enemy")
         {
             lives -= 30;
-            Respawn();
         }
 
         if (other.gameObject.tag == "Heavy Bullet Pickup")

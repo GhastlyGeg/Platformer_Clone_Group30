@@ -29,4 +29,12 @@ public class HeavyBullet : MonoBehaviour
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
