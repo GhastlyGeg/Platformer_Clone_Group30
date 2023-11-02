@@ -7,6 +7,11 @@ public class HeavyBullet : MonoBehaviour
     public float speed;
     public bool goingRight;
 
+    private void Start()
+    {
+        StartCoroutine(DespawnDelay());
+    }
+
     void Update()
     {
         if (goingRight)

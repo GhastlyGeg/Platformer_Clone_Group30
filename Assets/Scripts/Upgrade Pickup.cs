@@ -24,6 +24,7 @@ public class UpgradePickup : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Debug.Log("if statement works lol");
             Destroy(this.gameObject);
         }
     }
