@@ -23,9 +23,18 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public GameObject heavyBulletPrefab;
+
     public bool shootRight;
 
     public bool facingRight;
+
+    public bool heavyBullet;
+    public bool bullet = true;
+
+    public bool jumpPack;
+
+    public bool healthBooster;
 
     // Start is called before the first frame update
     void Start()
@@ -84,10 +93,17 @@ public class NewBehaviourScript : MonoBehaviour
             Respawn();
         }
 
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(KeyCode.E) && heavyBullet == false && bullet == true)
         {
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bulletInstance.GetComponent<Bullet>().goingRight = shootRight;
+        }
+
+        if (heavyBullet == true && bullet == false)
+        {
+            
+            GameObject bulletinstance = Instantiate(heavyBulletPrefab, transform.position, transform.rotation);
+            bulletinstance.GetComponent<HeavyBullet>().goingRight = shootRight;
         }
 
         CheckForDamage();
@@ -155,9 +171,11 @@ public class NewBehaviourScript : MonoBehaviour
             Respawn();
         }
 
-        if (other.gameObject.tag == "Heavy Bullet")
+        if (other.gameObject.tag == "Heavy Bullet Pickup")
         {
-            Debug.Log("Player gets heavy bullet upgrade");
+            bullet = false;
+            heavyBullet = true;
+            Debug.Log("Player picked up heavy bullet upgrade");
         }
     }
 }
