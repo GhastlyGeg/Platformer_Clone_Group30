@@ -15,6 +15,8 @@ public class GameOVer : MonoBehaviour
     public void QuitGame()
     {
         //the game kills itself (in game)
-        Application.Quit(); 
+        Application.Quit();
+
+        Debug.Log("Quits the Game");
     }
 }
