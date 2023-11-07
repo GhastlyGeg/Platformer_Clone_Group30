@@ -10,6 +10,10 @@ TagManager:
   - Enemy
   - LittleGuy
   - BigGuy
+  - Jump Pack Pickup
+  - Heavy Enemy
+  - Health +
+  - Extra Health
   layers:
   - Default
   - TransparentFX

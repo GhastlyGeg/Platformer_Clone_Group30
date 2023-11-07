@@ -32,7 +32,12 @@ public class HeavyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.tag == "Heavy Enemy")
         {
             Destroy(this.gameObject);
         }

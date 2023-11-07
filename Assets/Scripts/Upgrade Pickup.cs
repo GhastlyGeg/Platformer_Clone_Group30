@@ -22,9 +22,9 @@ public class UpgradePickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Destroys pickup when colliding with player
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("if statement works lol");
             Destroy(this.gameObject);
         }
     }

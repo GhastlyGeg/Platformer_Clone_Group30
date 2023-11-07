@@ -60,6 +60,11 @@ public class BasicEnemy : MonoBehaviour
                 movingRight = true;
             }
         }
+
+        if (lives <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,7 +76,7 @@ public class BasicEnemy : MonoBehaviour
                 lives -= 1;
             }
 
-            if (other.gameObject.tag == "HeavyBullet")
+            if (other.gameObject.tag == "Heavy Bullet")
             {
                 lives -= 3;
             }
@@ -84,7 +89,7 @@ public class BasicEnemy : MonoBehaviour
                 lives -= 1;
             }
 
-            if (other.gameObject.tag == "HeavyBullet")
+            if (other.gameObject.tag == "Heavy Bullet")
             {
                 lives -= 4;
             }

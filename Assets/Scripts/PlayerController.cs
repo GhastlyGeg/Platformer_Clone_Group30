@@ -36,6 +36,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public bool healthBooster;
 
+    public float maxHealth = 99;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -170,6 +172,24 @@ public class NewBehaviourScript : MonoBehaviour
             bullet = false;
             heavyBullet = true;
             Debug.Log("Player picked up heavy bullet upgrade");
+        }
+
+        if (other.gameObject.tag == "Jump Pack Pickup")
+        {
+            jumpForce += 3;
+            jumpPack = true;
+        }
+
+        //as long as health is not at max, player can regain 30 health
+        if (other.gameObject.tag == "Health +" && lives < maxHealth)
+        {
+            lives += 30;
+        }
+
+        if (other.gameObject.tag == "Extra Health")
+        {
+            maxHealth += 30;
+            healthBooster = true;
         }
     }
 }
