@@ -191,5 +191,13 @@ public class NewBehaviourScript : MonoBehaviour
             maxHealth += 30;
             healthBooster = true;
         }
+
+        if (other.gameObject.tag == "Portal")
+        {
+            Debug.Log("Interacted with portal");
+            //move the player to the teleport point's position stored on the Portal object
+            transform.position = other.gameObject.GetComponent<Portal>().teleportPoint.transform.position;
+            startPos = transform.position;
+        }
     }
 }
