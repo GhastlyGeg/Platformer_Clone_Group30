@@ -1,9 +1,11 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
-// what
+//Harms, Greg & Brown, Dylan
+//11/13/2023
+//Handles Menu Options
 public class GameOVer : MonoBehaviour
 {
     public void RetryGame()

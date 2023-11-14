@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//Harms, Greg
-//10/26/2023
+//Harms, Greg & Brown, Dylan
+//11/13/2023
 //Handles all player movement and collision detection for player object
 
 public class NewBehaviourScript : MonoBehaviour
 {   
     public float speed = 10f;
 
-    public float deathYLevel = -3f;
+    
 
     public float jumpForce = 20f;
 
@@ -31,12 +31,15 @@ public class NewBehaviourScript : MonoBehaviour
 
     public bool heavyBullet;
     public bool bullet = true;
+    public bool blink;
 
     public bool jumpPack;
 
     public bool healthBooster;
 
     public float maxHealth = 99;
+
+    public float enemiesKilled;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,11 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
+
         if (facingRight)
         {
             shootRight = true;
@@ -90,11 +98,6 @@ public class NewBehaviourScript : MonoBehaviour
             HandleJump();
         }
 
-        if (transform.position.y <= deathYLevel)
-        {
-            Respawn();
-        }
-
         if(Input.GetKeyDown(KeyCode.E) && heavyBullet == false && bullet == true)
         {
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
@@ -109,6 +112,8 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         CheckForDamage();
+
+        
     }
 
     private void Respawn()
@@ -117,10 +122,10 @@ public class NewBehaviourScript : MonoBehaviour
         //cause the player to lose a life
         transform.position = startPos;
 
-        if (lives <= 0)
+        if (lives == 0)
         {
             //add code to end the game, by loading the game over scene
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             Debug.Log("Game Ends");
         }
     }
@@ -164,7 +169,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (other.gameObject.tag == "Heavy enemy")
         {
-            lives -= 30;
+            lives -= 35;
         }
 
         if (other.gameObject.tag == "Heavy Bullet Pickup")
@@ -188,7 +193,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (other.gameObject.tag == "Extra Health")
         {
-            maxHealth += 30;
+            maxHealth += 100;
             healthBooster = true;
         }
 
@@ -198,6 +203,11 @@ public class NewBehaviourScript : MonoBehaviour
             //move the player to the teleport point's position stored on the Portal object
             transform.position = other.gameObject.GetComponent<Portal>().teleportPoint.transform.position;
             startPos = transform.position;
+        }
+
+        if (other.gameObject.tag == "Ship")
+        {
+            SceneManager.LoadScene(3);
         }
     }
 }

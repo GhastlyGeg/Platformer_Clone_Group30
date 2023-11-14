@@ -15,6 +15,10 @@ TagManager:
   - Health +
   - Extra Health
   - Portal
+  - Wall
+  - Door
+  - Gate
+  - Ship
   layers:
   - Default
   - TransparentFX

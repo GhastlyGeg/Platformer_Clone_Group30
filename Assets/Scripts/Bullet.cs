@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Harms, Greg & Brown, Dylan
+//11/13/2023
+//Handles bullet movement and behavior
+
 public class Bullet : MonoBehaviour
 {
     public float speed;
@@ -38,13 +42,17 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
-            
             Destroy(this.gameObject);
         }
 
         if (other.gameObject.tag == "Heavy Enemy")
         {
+            Destroy(this.gameObject);
 
+        }
+
+        if (other.gameObject.tag == "Wall")
+        {
             Destroy(this.gameObject);
         }
     }

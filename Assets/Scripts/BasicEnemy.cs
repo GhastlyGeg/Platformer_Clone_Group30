@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Harms, Greg & Brown, Dylan
+//11/13/2023
+//Handles enemy movement and collision
+
 public class BasicEnemy : MonoBehaviour
 {
     public float travelDistanceRight = 0;
@@ -23,12 +27,12 @@ public class BasicEnemy : MonoBehaviour
 
         if (littleGuy == true)
         {
-            lives = 3;
+            lives = 1;
         }
 
         if (bigGuy == true)
         {
-            lives = 8;
+            lives = 10;
         }
     }
 
@@ -64,6 +68,7 @@ public class BasicEnemy : MonoBehaviour
         if (lives <= 0)
         {
             Destroy(this.gameObject);
+            GetComponent<NewBehaviourScript>().enemiesKilled += 1;
         }
     }
 
